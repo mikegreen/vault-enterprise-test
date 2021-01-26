@@ -3,7 +3,7 @@
 # run as sudo
 # prereqs
 # install docker 
-amazon-linux-extras install docker
+sudo amazon-linux-extras install docker
 sudo service docker start
 sudo usermod -a -G docker ec2-user
 sudo chkconfig docker on
@@ -15,17 +15,17 @@ yum install -y git gcc make jq
 wget https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip
 unzip terraform_0.13.6_linux_amd64.zip 
 mv terraform /usr/local/bin/
-chmod +x /usr/local/bin/terraform 
+sudo chmod +x /usr/local/bin/terraform 
 
 # install vault binary
 wget https://releases.hashicorp.com/vault/1.6.1+ent/vault_1.6.1+ent_linux_amd64.zip
 unzip vault_1.6.1+ent_linux_amd64.zip 
 mv vault /usr/local/bin/
-sudo mv vault /usr/local/bin/
+sudo chmod +x /usr/local/bin/vault
 
 # docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 # done with prereqs
 # and back to orignal steps
