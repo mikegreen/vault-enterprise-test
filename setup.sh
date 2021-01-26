@@ -14,13 +14,13 @@ yum install -y git gcc make jq
 # install terraform binary
 wget https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip
 unzip terraform_0.13.6_linux_amd64.zip 
-mv terraform /usr/local/bin/
+mv -n terraform /usr/local/bin/
 sudo chmod +x /usr/local/bin/terraform 
 
 # install vault binary
 wget https://releases.hashicorp.com/vault/1.6.1+ent/vault_1.6.1+ent_linux_amd64.zip
 unzip vault_1.6.1+ent_linux_amd64.zip 
-mv vault /usr/local/bin/
+mv -n vault /usr/local/bin/
 sudo chmod +x /usr/local/bin/vault
 
 # docker-compose
@@ -57,6 +57,7 @@ docker-compose start statsd
 docker-compose start vault_1
 docker-compose start vault_2
 docker-compose start vault_3
+export VAULT_ADDR=http://127.0.0.1:8200
 RESPONSE=$(vault operator init -recovery-shares=1 -recovery-threshold=1 -format=json)
 echo $RESPONSE
 ROOT_TOKEN=$(echo $RESPONSE | jq -j .root_token)
